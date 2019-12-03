@@ -23,11 +23,21 @@ public class BaseController {
 		return SecurityUtils.getSubject().getSession();
 	}
 
+	/**
+	 * 开始分页
+	 * @param page
+	 */
 	public void doStargPage(Map<String, Object> page){
 		int pageNum=Integer.parseInt(StringUtils.replaceNull(page.get("page")));
 		int pageSize=Integer.parseInt(StringUtils.replaceNull(page.get("limit")));
 		PageHelper.startPage(pageNum,pageSize);
 	}
+
+	/**
+	 * 完成分页
+	 * @param ret
+	 * @param datas
+	 */
 	public void doFinishPage(Return ret, List datas){
 		PageInfo pageInfo=new PageInfo(datas);
 		ret.put("page",pageInfo);

@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * RedisShiroSessionDAO
+ * @@author youfu.wang
+ * @date 2019-10-28
+ */
 @Component
 public class RedisShiroSessionDAO extends EnterpriseCacheSessionDAO {
     @Autowired
