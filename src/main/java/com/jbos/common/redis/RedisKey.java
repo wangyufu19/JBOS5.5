@@ -9,8 +9,7 @@ public class RedisKey {
     public static String getConfigKey(String key){
         return "config:" + key;
     }
-
-    public static String getSessionKey(String key){
-        return "sessionid:" + key;
+    public static String getDataKey(String key){
+        return "data:" + key;
     }
 }

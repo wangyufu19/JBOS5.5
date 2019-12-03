@@ -1,6 +1,5 @@
-package com.jbos.app.sys.shiro;
+package com.jbos.common.shiro;
 
-import com.jbos.common.redis.RedisKey;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,15 @@ public class RedisShiroSessionDAO extends EnterpriseCacheSessionDAO {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    public String getSessionKey(String key){
+        return "sessionid:" + key;
+    }
     //创建session
     @Override
     protected Serializable doCreate(Session session) {
 
         Serializable sessionId = super.doCreate(session);
-        final String key = RedisKey.getSessionKey(sessionId.toString());
+        final String key = getSessionKey(sessionId.toString());
         setShiroSession(key, session);
         return sessionId;
     }
@@ -31,7 +33,7 @@ public class RedisShiroSessionDAO extends EnterpriseCacheSessionDAO {
 
         Session session = super.doReadSession(sessionId);
         if(session == null){
-            final String key = RedisKey.getSessionKey(sessionId.toString());
+            final String key = getSessionKey(sessionId.toString());
             session = getShiroSession(key);
         }
 
@@ -43,7 +45,7 @@ public class RedisShiroSessionDAO extends EnterpriseCacheSessionDAO {
     protected void doUpdate(Session session) {
 
         super.doUpdate(session);
-        final String key = RedisKey.getSessionKey(session.getId().toString());
+        final String key = getSessionKey(session.getId().toString());
         setShiroSession(key, session);
     }
 
@@ -52,7 +54,7 @@ public class RedisShiroSessionDAO extends EnterpriseCacheSessionDAO {
     protected void doDelete(Session session) {
 
         super.doDelete(session);
-        final String key = RedisKey.getSessionKey(session.getId().toString());
+        final String key = getSessionKey(session.getId().toString());
         redisTemplate.delete(key);
     }
 

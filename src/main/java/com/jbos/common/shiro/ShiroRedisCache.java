@@ -1,4 +1,4 @@
-package com.jbos.common.redis;
+package com.jbos.common.shiro;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +11,11 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.springframework.data.redis.core.RedisTemplate;
 
+/**
+ * ShiroRedisCache
+ * @@author youfu.wang
+ * @date 2019-10-28
+ */
 public class ShiroRedisCache<K,V> implements Cache<K,V> {
 
 	private RedisTemplate redisTemplate;

@@ -1,6 +1,7 @@
-package com.jbos.app.sys.shiro;
+package com.jbos.common.shiro;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

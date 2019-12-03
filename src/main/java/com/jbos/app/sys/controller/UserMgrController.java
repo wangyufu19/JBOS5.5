@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.jbos.app.sys.service.UserMgrService;
-import com.jbos.common.utils.Return;
 
 /**
  * 用户管理控制器类

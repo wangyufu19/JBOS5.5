@@ -1,4 +1,4 @@
-package com.jbos.app.sys.shiro;
+package com.jbos.common.shiro;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -42,7 +42,7 @@ public class ShiroUtils {
 	public static void logout() {
 		SecurityUtils.getSubject().logout();
 	}
-	
+
 	public static void main(String[] args) {
 		String salt = RandomStringUtils.randomAlphanumeric(20);
 		System.out.println("*******salt: "+salt);

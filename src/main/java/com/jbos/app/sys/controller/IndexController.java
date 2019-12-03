@@ -1,5 +1,5 @@
 package com.jbos.app.sys.controller;
-import com.jbos.app.sys.shiro.ShiroUtils;
+import com.jbos.common.shiro.ShiroUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;

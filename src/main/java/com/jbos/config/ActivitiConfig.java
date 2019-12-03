@@ -1,4 +1,4 @@
-package com.jbos.common.config;
+package com.jbos.config;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.RepositoryService;

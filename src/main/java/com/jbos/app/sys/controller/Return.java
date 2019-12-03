@@ -1,4 +1,4 @@
-package com.jbos.common.utils;
+package com.jbos.app.sys.controller;
 import java.util.HashMap;
 import java.util.Map;
 /**

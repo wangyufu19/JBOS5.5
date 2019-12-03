@@ -3,7 +3,7 @@ package com.jbos.app.sys.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import com.jbos.app.sys.service.UserMgrService;
-import com.jbos.app.sys.shiro.ShiroUtils;
+import com.jbos.common.shiro.ShiroUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.jbos.common.utils.Return;
-import com.jbos.common.redis.RedisService;
 /**
  * 用户认证控制器类
  * @author youfu.wang
@@ -25,8 +23,7 @@ import com.jbos.common.redis.RedisService;
 @Controller
 @RequestMapping("/auth")
 public class UserAuthController extends BaseController{
-	@Autowired
-	private RedisService redisService;
+
 	@Autowired
 	private UserMgrService userMgrService;
 	/**

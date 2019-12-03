@@ -3,7 +3,6 @@ package com.jbos.app.sys.controller;
 import com.jbos.app.sys.pojo.LoginInfo;
 import com.jbos.app.sys.pojo.Menu;
 import com.jbos.app.sys.service.MenuMgrService;
-import com.jbos.common.utils.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

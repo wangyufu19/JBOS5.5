@@ -1,4 +1,4 @@
-package com.jbos.common.config;
+package com.jbos.config;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 /**
- * ActivitiConfig
+ * DataSourceConfig
  * @author youfu.wang
  * @date 2019-01-31
  */

@@ -2,12 +2,10 @@ package com.jbos.app.sys.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.jbos.app.sys.pojo.LoginInfo;
-import com.jbos.common.utils.Return;
 import com.jbos.common.utils.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
 import java.util.List;
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.jbos.common.config;
+package com.jbos.config;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.jbos.app.sys.shiro.RedisShiroSessionDAO;
-import com.jbos.app.sys.shiro.UserRealm;
+import com.jbos.common.shiro.RedisShiroSessionDAO;
+import com.jbos.common.shiro.UserRealm;
 /**
  * ShiroConfig
  * @author youfu.wang
