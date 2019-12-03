@@ -57,6 +57,7 @@ public class ShiroConfig {
         shiroFilter.setUnauthorizedUrl("/");
 
         Map<String, String> filterMap = new LinkedHashMap<>();
+        filterMap.put("/ws/**", "anon");
         filterMap.put("/statics/**", "anon");
         filterMap.put("/login.html", "anon");
         filterMap.put("/auth/login", "anon");

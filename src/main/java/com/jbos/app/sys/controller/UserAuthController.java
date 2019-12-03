@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.jbos.app.sys.service.UserMgrService;
 import com.jbos.common.shiro.ShiroUtils;
+import com.jbos.common.spring.SpringContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -11,6 +13,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/auth")
+@Slf4j
 public class UserAuthController extends BaseController{
 
 	@Autowired
@@ -32,6 +36,7 @@ public class UserAuthController extends BaseController{
 	 */
 	@RequestMapping("/getLogin")
 	public String getLogin(HttpServletRequest request) {
+		log.info("******RedisTemplate: "+ SpringContextHolder.getApplicationContext().getBean("redisTemplate"));
 		return "login";
 	}
 
@@ -41,7 +46,7 @@ public class UserAuthController extends BaseController{
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public Return login(String username, String password) {		
+	public Return login(String username, String password) {
 		try{
 			Subject subject = ShiroUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);

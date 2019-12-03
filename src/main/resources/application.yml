@@ -41,13 +41,15 @@ spring:
     charset: utf-8
     content-type: text/html
     cache: false
-logging:
-  level:
-     com.* : debug
-
 jbos:
   redis:
     open: true  # 是否开启redis缓存  true开启   false关闭
   shiro:
     redis: true # true表示shiro session存到redis里，需要开启redis
     timeout: 60
+  webservice:
+    cxf:
+      urlMappings: /ws/*
+logging:
+  level:
+     com.* : debug

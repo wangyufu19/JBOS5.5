@@ -1,7 +1,6 @@
 package com.jbos.app.sys.controller;
 import com.jbos.app.sys.pojo.Org;
 import com.jbos.app.sys.service.OrgMgrService;
-import com.jbos.common.utils.PageObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +37,6 @@ public class OrgMgrController extends BaseController{
     @RequestMapping("/getOrgList")
     public Return getOrgList(@RequestParam Map<String, Object> params){
         Return ret=Return.ok();
-        PageObject pageObject=null;
         try{
             this.doStargPage(params);
             List<Org> orgs=orgMgrService.getOrgList();
