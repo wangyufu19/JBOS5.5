@@ -1,0 +1,53 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 9080
+  servlet:
+    context-path: /jbos
+#mybatis
+mybatis-plus:
+  mapperLocations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+spring:
+  main:
+    show-banner: false
+  devtools:
+    restart:
+      #热部署生效
+      enabled: false
+      #设置重启的目录
+      additional-paths: src/main/java
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+      enabled: true
+  freemarker:
+    suffix: .html
+    request-context-attribute: request
+    template-loader-path: classpath:/templates/
+    expose-request-attributes: true
+    expose-session-attributes: false
+    expose-spring-macro-helpers: true
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    cache: false
+logging:
+  level:
+     com.* : debug
+
+jbos:
+  redis:
+    open: true  # 是否开启redis缓存  true开启   false关闭
+  shiro:
+    redis: true # true表示shiro session存到redis里，需要开启redis
+    timeout: 60

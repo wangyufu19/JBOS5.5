@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JBOS支撑系统</title>
+	<script type="text/javascript">
+	if(top!=window){
+ 		top.location=window.location;
+	}
+	</script>
+	<#include "/header.html">
+
+  <style scoped>
+	.login-container {
+	    width: 100%;
+	    height: 100%;
+	}
+	.login-page {
+	    -webkit-border-radius: 5px;
+	    border-radius: 5px;
+	    margin: 180px auto;
+	    width: 450px;
+	    padding: 35px 35px 15px;
+	    background: #fff;
+	    border: 1px solid #eaeaea;
+	    box-shadow: 0 0 25px #cac6c6;
+	}
+	label.el-checkbox.rememberme {
+	    margin: 0px 0px 15px;
+	    text-align: left;
+	}
+  </style>
+</head>
+<body>
+<div id="login" class="login-container" v-cloak>
+	<el-form status-icon ref="formData" label-width="100px" class="demo-ruleForm login-page">
+	  <h3 style=" margin: 0px 0px 15px;text-align: center">JBOS支撑系统</h3>
+	  <el-alert  v-if="error" type="error">
+	  	{{errorMsg}}
+  	  </el-alert>
+	  <el-form-item label="用户名" prop="username">
+	    <el-input type="text" v-model="formData.username" autocomplete="off"></el-input>
+	  </el-form-item>
+	  <el-form-item label="密码" prop="password">
+	    <el-input type="password" v-model="formData.password" autocomplete="off"></el-input>
+	  </el-form-item>
+	  <el-form-item>
+	    <el-button type="primary" @click="login('formData')">登录</el-button>
+	    <el-button @click="cancel('formData')">取消</el-button>
+	  </el-form-item>
+	</el-form>	
+</div>
+
+<script>
+var vm =new Vue({
+    el: '#login',
+    data:{
+    	error:false,
+    	errorMsg:'',
+    	formData:{
+    		username:'admin',
+        	password:'123456'
+    	}    	
+    },
+	beforeCreate: function(){
+		if(self != top){
+			top.location.href = self.location.href;
+		}
+	},
+	methods: {
+		login: function (formName) {			
+			var data = "username="+vm.formData.username+"&password="+vm.formData.password;
+			$.ajax({
+				type: "POST",
+			    url: "${request.contextPath}/auth/login",
+			    data: data,
+			    dataType: "json",
+			    success: function(result){
+					if(result.retCode == 0){
+						//登录成功
+						parent.location.href  ='${request.contextPath}/index';
+					}else{
+						vm.error=true;
+						vm.errorMsg=result.retMsg;
+					}
+				}
+			});
+		},
+		cancel:function(formName) {
+			vm.formData.username='';
+			vm.formData.password='';
+        }
+	}
+  })
+</script>
+</body>
+</html>
