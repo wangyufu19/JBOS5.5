@@ -1,8 +1,8 @@
 package com.jbos.app.sys.controller;
 
-import com.jbos.app.sys.pojo.LoginInfo;
 import com.jbos.app.sys.pojo.Menu;
 import com.jbos.app.sys.service.MenuMgrService;
+import com.jbos.common.data.UserObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +30,9 @@ public class MenuMgrController extends BaseController{
     @RequestMapping(value = "/getUserMenuList", method = RequestMethod.GET)
     public Return getUserMenuList(String username) {
         List<Menu> menuList=null;
-        LoginInfo loginInfo=this.getLoginInfo();
-        if(loginInfo!=null){
-            menuList=menuMgrService.getUserMenuList(loginInfo.getId(),loginInfo.getLoginName());
+        UserObject userObject=this.getUserObject();
+        if(userObject!=null){
+            menuList=menuMgrService.getUserMenuList(userObject.getUid(),userObject.getUsername());
         }
         return Return.ok().put("menuList",menuList);
     }

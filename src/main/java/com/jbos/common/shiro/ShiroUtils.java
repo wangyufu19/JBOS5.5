@@ -1,6 +1,7 @@
 package com.jbos.common.shiro;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -11,11 +12,14 @@ import org.apache.shiro.subject.Subject;
  * @date 2019-01-31
  */
 public class ShiroUtils {
-	/**  加密算法 */
-	public final static String hashAlgorithmName = "SHA-256";
+	/**  加密算法 SHA-256,MD5*/
+	public final static String hashAlgorithmName = "md5";
 	/**  循环次数 */
-	public final static int hashIterations = 16;
+	public final static int hashIterations = 1;
 
+	public static String md5(String password, String salt) {
+		return new Md5Hash(password, salt, hashIterations).toString();
+	}
 	public static String sha256(String password, String salt) {
 		return new SimpleHash(hashAlgorithmName, password, salt, hashIterations).toString();
 	}
@@ -46,6 +50,6 @@ public class ShiroUtils {
 	public static void main(String[] args) {
 		String salt = RandomStringUtils.randomAlphanumeric(20);
 		System.out.println("*******salt: "+salt);
-		System.out.println("*******pwd: "+ShiroUtils.sha256("123456", salt));
+		System.out.println("*******pwd: "+ShiroUtils.md5("111111", salt));
 	}
 }

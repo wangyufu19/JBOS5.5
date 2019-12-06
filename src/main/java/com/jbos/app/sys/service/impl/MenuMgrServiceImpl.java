@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.jbos.app.sys.pojo.LoginInfo;
 import com.jbos.app.sys.pojo.Menu;
 import com.jbos.app.sys.mapper.MenuMapper;
 import com.jbos.app.sys.service.MenuMgrService;
@@ -28,12 +27,8 @@ public class MenuMgrServiceImpl  implements MenuMgrService{
     public List<Menu> getUserMenuList(String userid,String loginName){
         List<Menu> menuList = new ArrayList<Menu>();
         List<Menu> menus=null;
-        //管理员用户
-        if(LoginInfo.ADMINUSER.equals(loginName)){
-            //得到根菜单
-            menus=this.getMenuByParentId(Menu.ROOTMENU_ID);
-        }
-
+        //得到根菜单
+        menus=this.getMenuByParentId(Menu.ROOTMENU_ID);
         menuList=this.getMenuTree(menus);
         return menuList;
     }

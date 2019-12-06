@@ -1,6 +1,7 @@
 package com.jbos.app.sys.service;
+import com.jbos.common.data.UserObject;
 
-import com.jbos.app.sys.pojo.LoginInfo;
+import java.util.Map;
 
 /**
  * UserAuthServiceImpl
@@ -9,11 +10,16 @@ import com.jbos.app.sys.pojo.LoginInfo;
  */
 public interface UserAuthService {
 	/**
-	 * 得到用户信息
+	 * 用户认证
 	 * @param username
-	 * @param password
 	 * @return
 	 */
-	public LoginInfo auth(String username);
+	public Map<String, Object> auth(String username);
+	/**
+	 * 查询用户信息
+	 * @param username
+	 * @return
+	 */
+	public UserObject getUserInfo(String username);
 
 }

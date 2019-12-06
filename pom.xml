@@ -8,7 +8,7 @@
 		<version>2.0.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.jbosplatform</groupId>
+	<groupId>com.jbos.support</groupId>
 	<artifactId>JBOS</artifactId>
 	<version>5.5</version>
 	<name>JBOS</name>
@@ -33,6 +33,7 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -171,17 +172,18 @@
 	</dependencies>
 
 
-	<repositories>
-		<!-- 阿里云maven仓库 -->
+	<distributionManagement>
 		<repository>
-			<id>public</id>
-			<name>aliyun nexus</name>
-			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
+			<id>nexus-releases</id>
+			<name>Local Nexus Repository</name>
+			<url>http://127.0.0.1:8081/nexus/content/repositories/releases/</url>
 		</repository>
-	</repositories>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>Local Nexus Repository</name>
+			<url>http://127.0.0.1:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<build>
 		<plugins>

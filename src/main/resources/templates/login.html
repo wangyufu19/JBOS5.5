@@ -51,6 +51,9 @@
 </div>
 
 <script>
+if(self != top){
+	top.location.href = self.location.href;
+}
 var vm =new Vue({
     el: '#login',
     data:{
@@ -58,13 +61,11 @@ var vm =new Vue({
     	errorMsg:'',
     	formData:{
     		username:'admin',
-        	password:'123456'
+        	password:'111111'
     	}    	
     },
 	beforeCreate: function(){
-		if(self != top){
-			top.location.href = self.location.href;
-		}
+
 	},
 	methods: {
 		login: function (formName) {			

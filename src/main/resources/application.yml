@@ -43,13 +43,13 @@ spring:
     cache: false
 jbos:
   redis:
-    open: true  # 是否开启redis缓存  true开启   false关闭
+    open: false  # 是否开启redis缓存  true开启   false关闭
   shiro:
-    redis: true # true表示shiro session存到redis里，需要开启redis
+    redis: false # true表示shiro session存到redis里，需要开启redis
     timeout: 60
   webservice:
     cxf:
       urlMappings: /ws/*
 logging:
   level:
-     com.* : debug
+     com.jbos.* : debug

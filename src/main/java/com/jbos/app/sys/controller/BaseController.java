@@ -1,11 +1,10 @@
 package com.jbos.app.sys.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.jbos.app.sys.pojo.LoginInfo;
+import com.jbos.common.data.UserObject;
 import com.jbos.common.utils.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +15,8 @@ import java.util.Map;
  */
 public class BaseController {
 
-	protected LoginInfo getLoginInfo() {
-		return (LoginInfo) SecurityUtils.getSubject().getPrincipal();
+	protected UserObject getUserObject() {
+		return (UserObject) SecurityUtils.getSubject().getPrincipal();
 	}
 	protected Session getSession() {
 		return SecurityUtils.getSubject().getSession();

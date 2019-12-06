@@ -2,7 +2,7 @@ package com.jbos.app.sys.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jbos.app.sys.pojo.LoginInfo;
+import com.jbos.common.data.UserObject;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,8 @@ public class UserMgrController extends  BaseController{
     @ResponseBody
     @RequestMapping("/getUserLoginInfo")
     public Return getUserLoginInfo(){
-        LoginInfo loginInfo=this.getLoginInfo();
-        return Return.ok().put("user",loginInfo);
+        UserObject userObject=this.getUserObject();
+        return Return.ok().put("user",userObject);
     }
     /**
      * 查询用户数据列表

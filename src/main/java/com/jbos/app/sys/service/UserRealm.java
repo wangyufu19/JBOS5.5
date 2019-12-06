@@ -1,7 +1,10 @@
-package com.jbos.common.shiro;
+package com.jbos.app.sys.service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.jbos.common.data.UserObject;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -17,8 +20,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.jbos.app.sys.pojo.LoginInfo;
-import com.jbos.app.sys.service.UserAuthService;
+import com.jbos.common.shiro.ShiroUtils;
 /**
  * 用户认证
  * @author youfu.wang
@@ -47,12 +49,18 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authtoken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken)authtoken;
-		LoginInfo loginInfo=null;
-		loginInfo=userAuthService.auth(token.getUsername());
-		if(loginInfo==null) {
+		String username=token.getUsername();
+		//用户验证
+		Map<String, Object> authMap=userAuthService.auth(username);
+		if(authMap==null) {
 			throw new IncorrectCredentialsException("账号或密码不正确");
 		}
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(loginInfo, loginInfo.getPassword(), ByteSource.Util.bytes(loginInfo.getSalt()), getName());
+		//查询用户信息
+		UserObject userObject=userAuthService.getUserInfo(username);
+		String password=String.valueOf(authMap.get("PASSWORD"));
+		String salt=String.valueOf(authMap.get("SALT"));
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(
+				userObject, password, ByteSource.Util.bytes(salt),getName());
 		return info;
 	}
 

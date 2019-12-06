@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.jbos.common.shiro.RedisShiroSessionDAO;
-import com.jbos.common.shiro.UserRealm;
+import com.jbos.app.sys.service.UserRealm;
 /**
  * ShiroConfig
  * @author youfu.wang
