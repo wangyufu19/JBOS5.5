@@ -42,11 +42,12 @@ spring:
     content-type: text/html
     cache: false
 jbos:
-  redis:
-    open: false  # 是否开启redis缓存  true开启   false关闭
-  shiro:
-    redis: false # true表示shiro session存到redis里，需要开启redis
-    timeout: 60
+  websecurity:
+    shiro: true
+    loginUrl: /websecurity/getLogin
+    excludeUrlPatterns: /login.html,/websecurity/login,/ws/**
+    sessionTimeout: 60
+    enableCache: true
   webservice:
     cxf:
       urlMappings: /ws/*

@@ -26,17 +26,16 @@ public class ShiroConfig {
 
     @Bean("sessionManager")
     public SessionManager sessionManager(RedisShiroSessionDAO redisShiroSessionDAO,
-                                         @Value("${jbos.redis.open}") boolean redisOpen,
-                                         @Value("${jbos.shiro.redis}") boolean shiroRedis,
-                                         @Value("${jbos.shiro.timeout}") int timeout){
+                                         @Value("${jbos.websecurity.enableCache}") boolean enableCache,
+                                         @Value("${jbos.websecurity.sessionTimeout}") int sessionTimeout){
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         //设置session过期时间为1小时(单位：毫秒)，默认为30分钟
-        sessionManager.setGlobalSessionTimeout(timeout * 60 * 1000);
+        sessionManager.setGlobalSessionTimeout(sessionTimeout * 60 * 1000);
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setSessionIdUrlRewritingEnabled(false);
 
-        //如果开启redis缓存且renren.shiro.redis=true，则shiro session存到redis里
-        if(redisOpen && shiroRedis){
+        //开启缓存
+        if(enableCache){
             sessionManager.setSessionDAO(redisShiroSessionDAO);
         }
         return sessionManager;
@@ -53,14 +52,14 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
-        shiroFilter.setLoginUrl("/auth/getLogin");
+        shiroFilter.setLoginUrl("/websecurity/getLogin");
         shiroFilter.setUnauthorizedUrl("/");
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/ws/**", "anon");
         filterMap.put("/statics/**", "anon");
         filterMap.put("/login.html", "anon");
-        filterMap.put("/auth/login", "anon");
+        filterMap.put("/websecurity/login", "anon");
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/captcha.jpg", "anon");
         filterMap.put("/**", "authc");

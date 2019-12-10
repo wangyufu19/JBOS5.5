@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date 2019-01-29
  */
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/websecurity")
 @Slf4j
 public class UserAuthController extends BaseController{
 
