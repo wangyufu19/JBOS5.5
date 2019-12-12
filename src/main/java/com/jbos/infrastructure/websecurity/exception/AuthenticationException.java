@@ -1,4 +1,4 @@
-package com.jbos.common.websecurity.exception;
+package com.jbos.infrastructure.websecurity.exception;
 /**
  * AuthenticationException
  * @author youfu.wang

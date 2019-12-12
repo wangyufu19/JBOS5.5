@@ -1,4 +1,4 @@
-package com.jbos.common.websecurity.auth;
+package com.jbos.infrastructure.websecurity.auth;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

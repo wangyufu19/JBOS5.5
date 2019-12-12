@@ -1,4 +1,4 @@
-package com.jbos.common.websecurity.session;
+package com.jbos.infrastructure.websecurity.session;
 
 /**
  * SessionCache

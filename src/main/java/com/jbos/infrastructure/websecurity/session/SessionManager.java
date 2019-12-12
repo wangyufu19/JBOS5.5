@@ -1,9 +1,8 @@
-package com.jbos.common.websecurity.session;
+package com.jbos.infrastructure.websecurity.session;
 
-import com.jbos.app.sys.pojo.User;
-import com.jbos.common.data.UserObject;
 import com.jbos.common.utils.JsonUtils;
-import com.jbos.common.websecurity.auth.AuthCookie;
+import com.jbos.infrastructure.websecurity.auth.AuthCookie;
+import com.jbos.infrastructure.websecurity.auth.AuthenticationInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -75,43 +74,43 @@ public class SessionManager {
     }
 
     /**
-     * 添加用户会话
-     * @param userObject
+     * 添加会话认证信息
+     * @param authenticationInfo
      */
-    public void addUserSession(UserObject userObject){
-        if(userObject==null||"".equals(userObject.getUid())){
+    public void addSessionAuthenticationInfo(AuthenticationInfo authenticationInfo){
+        if(authenticationInfo==null){
             return;
         }
         //启用缓存
         if(this.enableCache&&sessionCache!=null){
-            //添加用户会话Cookie数据
+            //添加会话Cookie数据
             AuthCookie authCookie=new AuthCookie(request,response);
-            authCookie.addCookieValue(AuthCookie.GSID,SessionManager.getSessionKey(userObject.getUid()));
-            //添加用户会话缓存数据
-            sessionCache.add(SessionManager.getSessionKey(userObject.getUid()), JsonUtils.toJson(userObject),sessionTimeout);
+            authCookie.addCookieValue(AuthCookie.GSID,SessionManager.getSessionKey(authenticationInfo.getUsername()));
+            //添加会话缓存数据
+            sessionCache.add(SessionManager.getSessionKey(authenticationInfo.getUsername()), JsonUtils.toJson(authenticationInfo),sessionTimeout);
         }else{
             HttpSession session=request.getSession(false);
             if(session!=null){
                 session.removeAttribute(session.getId());
-                session.setAttribute(session.getId(),userObject);
+                session.setAttribute(session.getId(),authenticationInfo);
             }
         }
     }
 
     /**
-     * 删除用户会话
+     * 删除会话认证信息
      */
-    public void deleteUserSession(){
+    public void deleteSessionAuthenticationInfo(){
         //启用缓存
         if(this.enableCache&&sessionCache!=null){
-            //删除用户会话Cookie数据
+            //删除会话Cookie数据
             AuthCookie authCookie=new AuthCookie(request,response);
             String gsidKey=authCookie.getCookieValue(AuthCookie.GSID);
             if(null==gsidKey||"".equals(gsidKey)){
                 return;
             }
             authCookie.deleteCookieValue(AuthCookie.GSID);
-            //删除用户会话缓存数据
+            //删除会话缓存数据
             sessionCache.delete(gsidKey);
         }else{
             HttpSession session=request.getSession(false);
@@ -122,11 +121,11 @@ public class SessionManager {
     }
 
     /**
-     * 得到用户会话对象
+     * 得到会话认证信息
      * @return
      */
-    public UserObject getUserObject(){
-        UserObject userObject=null;
+    public AuthenticationInfo getAuthenticationInfo(){
+        AuthenticationInfo authenticationInfo=null;
         //启用缓存
         if(this.enableCache&&sessionCache!=null){
             AuthCookie authCookie=new AuthCookie(request,response);
@@ -138,23 +137,23 @@ public class SessionManager {
             if(null==sidValue||"".equals(sidValue)){
                 return null;
             }
-            userObject=JsonUtils.fromJson(String.valueOf(sidValue),UserObject.class);
+            authenticationInfo=JsonUtils.fromJson(String.valueOf(sidValue),AuthenticationInfo.class);
         }else{
             HttpSession session=request.getSession(false);
             if(session!=null){
-                userObject=(UserObject)session.getAttribute(session.getId());
+                authenticationInfo=(AuthenticationInfo)session.getAttribute(session.getId());
             }
         }
-        return userObject;
+        return authenticationInfo;
     }
 
     /**
-     * 用户会话超时
+     * 是否会话超时
      * @return
      */
     public boolean isSessionTimeout(){
-        UserObject userObject=this.getUserObject();
-        if(userObject==null) {
+        AuthenticationInfo authenticationInfo=this.getAuthenticationInfo();
+        if(authenticationInfo==null) {
             return true;
         }else{
             return false;

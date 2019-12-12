@@ -43,9 +43,9 @@ spring:
     cache: false
 jbos:
   websecurity:
-    shiro: true
-    loginUrl: /websecurity/getLogin
-    excludeUrlPatterns: /login.html,/websecurity/login,/ws/**
+    shiro: false
+    loginUrl: /auth/getLogin
+    excludeUrlPatterns: /login.html,/auth/login,/ws/**
     sessionTimeout: 60
     enableCache: true
   webservice:
