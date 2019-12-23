@@ -4,6 +4,7 @@ import com.jbos.infrastructure.websecurity.auth.Authentication;
 import com.jbos.infrastructure.websecurity.auth.AuthenticationInfo;
 import com.jbos.infrastructure.websecurity.exception.AuthenticationException;
 import com.jbos.infrastructure.websecurity.exception.UserIncorrectException;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.Map;

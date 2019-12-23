@@ -1,8 +1,6 @@
 package com.jbos.infrastructure.websecurity.auth;
 
-
 import com.jbos.infrastructure.websecurity.exception.AuthenticationException;
-import com.jbos.infrastructure.websecurity.exception.UserIncorrectException;
 
 /**
  * Authentication

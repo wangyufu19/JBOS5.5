@@ -49,16 +49,17 @@ public class UserAuthController extends BaseController{
 		try{
 			Subject subject = ShiroUtils.getSubject();
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-			subject.login(token);			
-		}catch (UnknownAccountException e) {			
+			subject.login(token);
+		}catch (UnknownAccountException e) {
 			return Return.error("账号或密码不正确");
-		}catch (IncorrectCredentialsException e) {			
+		}catch (IncorrectCredentialsException e) {
 			return Return.error("账号或密码不正确");
-		}catch (LockedAccountException e) {			
+		}catch (LockedAccountException e) {
 			return Return.error("账号已被锁定,请联系管理员");
-		}catch (AuthenticationException e) {			
+		}catch (AuthenticationException e) {
 			return Return.error("账户验证失败");
 		}
+
 		return Return.ok();
 	}
 }
