@@ -1,5 +1,4 @@
 package com.jbos.common.data;
-
 import lombok.Getter;
 import lombok.Setter;
 
