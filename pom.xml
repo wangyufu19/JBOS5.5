@@ -173,6 +173,11 @@
 			<artifactId>activiti-spring</artifactId>
 			<version>${activiti.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.decampo</groupId>
+			<artifactId>xirr</artifactId>
+			<version>0.1</version>
+		</dependency>
 	</dependencies>
 
 

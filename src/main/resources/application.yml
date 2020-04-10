@@ -15,8 +15,6 @@ mybatis-plus:
     cache-enabled: false
     call-setters-on-nulls: true
 spring:
-  main:
-    show-banner: false
   devtools:
     restart:
       #热部署生效

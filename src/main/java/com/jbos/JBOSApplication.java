@@ -13,6 +13,7 @@ public class JBOSApplication extends SpringBootServletInitializer{
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(JBOSApplication.class);
 	}
+
 	public static void main(String[] args) {
 		SpringApplication springApplication=new SpringApplication(JBOSApplication.class);
 		springApplication.addListeners(new ApplicationContextListener());
