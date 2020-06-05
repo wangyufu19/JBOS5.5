@@ -1,18 +1,18 @@
 package com.jbos.app.sys.mapper;
-import com.jbos.app.sys.pojo.Menu;
+import com.jbos.app.sys.pojo.Func;
 import java.util.List;
 import java.util.Map;
 
 /**
- * MenuMapper
+ * FuncMapper
  * @author youfu.wang
  * @date 2019-01-31
  */
-public interface MenuMapper {
+public interface FuncMapper {
     /**
-     * 查询用户菜单权限列表
+     * 查询用户功能权限列表
      * @param parameterObject
      * @return
      */
-    public List<Menu> getUserMenuList(Map<String,Object> parameterObject);
+    public List<Func> getUserFuncList(Map<String,Object> parameterObject);
 }

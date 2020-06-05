@@ -9,27 +9,27 @@
           WHEN ORG_TYPE="01" THEN "公司"
           WHEN ORG_TYPE="02" THEN "部门"
         END AS ORG_TYPE,ORG_DESC
-        FROM JBOS_T_ORG
+        FROM JBOS_ORG
         WHERE IS_VALID=1
         ORDER BY ORG_CODE
     </select>
     <!--查询组织机构数据-->
     <select id="getOrg"  parameterType="java.lang.String" resultType="com.jbos.app.sys.pojo.Org">
-        SELECT ID,PARENT_ID,ORG_CODE,ORG_NAME,ORG_TYPE,ORG_DESC FROM JBOS_T_ORG
+        SELECT ID,PARENT_ID,ORG_CODE,ORG_NAME,ORG_TYPE,ORG_DESC FROM JBOS_ORG
         WHERE ID=#{orgId}
     </select>
     <!--保存组织机构数据-->
     <insert id="addOrg" parameterType="com.jbos.app.sys.pojo.Org">
-        INSERT INTO JBOS_T_ORG(ID,PARENT_ID,ORG_CODE,ORG_NAME,ORG_TYPE,ORG_DESC)
+        INSERT INTO JBOS_ORG(ID,PARENT_ID,ORG_CODE,ORG_NAME,ORG_TYPE,ORG_DESC)
         VALUES(#{id},#{parentId},#{orgCode},#{orgName},#{orgType},#{orgDesc})
     </insert>
     <!--更新组织机构数据-->
     <update id="updateOrg" parameterType="com.jbos.app.sys.pojo.Org">
-        UPDATE JBOS_T_ORG SET ORG_CODE=#{orgCode},ORG_NAME=#{orgName},ORG_TYPE=#{orgType},ORG_DESC=#{orgDesc}
+        UPDATE JBOS_ORG SET ORG_CODE=#{orgCode},ORG_NAME=#{orgName},ORG_TYPE=#{orgType},ORG_DESC=#{orgDesc}
         WHERE ID=#{id}
     </update>
     <!--删除组织机构数-->
     <delete id="deleteOrg" parameterType="java.lang.String">
-        DELETE FROM JBOS_T_ORG WHERE ID=#{id}
+        DELETE FROM JBOS_ORG WHERE ID=#{id}
     </delete>
 </mapper>

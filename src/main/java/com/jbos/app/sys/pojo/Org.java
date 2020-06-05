@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author youfu.wang
  * @date 2019-01-31
  */
-@TableName("jbos_t_org")
+@TableName("JBOS_ORG")
 public class Org extends BaseEntity{
     /**
      * 根机构id

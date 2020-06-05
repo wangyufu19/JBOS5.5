@@ -41,11 +41,10 @@ spring:
     cache: false
 jbos:
   websecurity:
-    shiro: true
     loginUrl: /auth/getLogin
     excludeUrlPatterns: /login.html,/auth/login,/ws/**
     sessionTimeout: 60
-    enableCache: true
+    enableCache: false
   webservice:
     cxf:
       urlMappings: /ws/*

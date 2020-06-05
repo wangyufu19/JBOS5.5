@@ -4,13 +4,13 @@
     <!--用户认证-->
     <select id="auth" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT A.ID,A.LOGIN_NAME,A.LOGIN_PWD AS PASSWORD,A.USER_NAME,A.SALT
-        FROM JBOS_T_USER A
+        FROM JBOS_USER A
         WHERE A.LOGIN_NAME=#{username}
     </select>
     <!--查询用户信息-->
     <select id="getUserInfo" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT A.ID,A.LOGIN_NAME,A.USER_NAME,A.USER_STATUS,A.ORG_ID,A.DEP_ID
-        FROM JBOS_T_USER A
+        SELECT A.ID,A.LOGIN_NAME,A.USER_NAME,A.USER_STATUS
+        FROM JBOS_USER A
         WHERE A.LOGIN_NAME=#{username}
     </select>
 </mapper>

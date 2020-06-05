@@ -4,21 +4,21 @@ var menuItem = Vue.extend({
     props:{item:{}},
     template:[
         '<li>',
-        '	<a v-if="item.menuType == 0" href="javascript:;">',
+        '	<a v-if="item.funcType == 0" href="javascript:;">',
         '		<i v-if="item.icon != null" :class="item.icon"></i>',
-        '		<span>{{item.menuName}}</span>',
+        '		<span>{{item.funcName}}</span>',
         '		<i class="fa fa-angle-left pull-right"></i>',
         '	</a>',
-        '	<ul v-if="item.menuType == 0" class="treeview-menu">',
+        '	<ul v-if="item.funcType == 0" class="treeview-menu">',
         '		<menu-item :item="item" v-for="item in item.list"></menu-item>',
         '	</ul>',
 
-        '	<a v-if="item.menuType == 1 && item.parentId == 0" :href="\'#\'+item.menuUrl">',
+        '	<a v-if="item.funcType == 1 && item.parentId == 0" :href="\'#\'+item.funcUrl">',
         '		<i v-if="item.icon != null" :class="item.icon"></i>',
-        '		<span>{{item.menuName}}</span>',
+        '		<span>{{item.funcName}}</span>',
         '	</a>',
 
-        '	<a v-if="item.menuType== 1 && item.parentId != 0" :href="\'#\'+item.menuUrl"><i v-if="item.icon != null" :class="item.icon"></i><i v-else class="fa fa-circle-o"></i> {{item.menuName}}</a>',
+        '	<a v-if="item.funcType== 1 && item.parentId != 0" :href="\'#\'+item.funcUrl"><i v-if="item.icon != null" :class="item.icon"></i><i v-else class="fa fa-circle-o"></i> {{item.funcName}}</a>',
         '</li>'
     ].join('')
 });
@@ -80,8 +80,8 @@ var vm =new Vue({
         });
     },
     getMenuList: function () {
-        $.getJSON("menu/getUserMenuList?_"+$.now(), function(r){
-            vm.menuList = r.menuList;
+        $.getJSON("menu/getUserFuncList?_"+$.now(), function(r){
+            vm.menuList = r.funcList;
         });
     }
   },
@@ -99,10 +99,10 @@ var vm =new Vue({
 function routerList(router, menuList){
 	for(var key in menuList){
 		var menu = menuList[key];
-		if(menu.menuType == 0){
+		if(menu.funcType == 0){
 			routerList(router, menu.list);
-		}else if(menu.menuType == 1){
-			router.add('#'+menu.menuUrl, function() {
+		}else if(menu.funcType == 1){
+			router.add('#'+menu.funcUrl, function() {
 				var url = window.location.hash;
 				//替换iframe的url
 			    vm.main = contextPath+url.replace('#', '');

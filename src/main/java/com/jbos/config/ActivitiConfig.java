@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author youfu.wang
  * @date 2019-01-31
  */
-@Configuration
+//@Configuration
 public class ActivitiConfig {
     @Bean
     public ProcessEngine processEngine(DataSourceTransactionManager transactionManager, @Qualifier("activiti") DataSource dataSource) throws IOException {

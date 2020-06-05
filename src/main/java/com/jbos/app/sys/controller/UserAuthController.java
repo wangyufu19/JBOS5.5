@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @date 2019-01-29
  */
 @Controller
-@RequestMapping("/websecurity")
+@RequestMapping("/auth")
 @Slf4j
 public class UserAuthController extends BaseController{
 
@@ -35,7 +35,6 @@ public class UserAuthController extends BaseController{
 	 */
 	@RequestMapping("/getLogin")
 	public String getLogin(HttpServletRequest request) {
-		log.info("******RedisTemplate: "+ SpringContextHolder.getApplicationContext().getBean("redisTemplate"));
 		return "login";
 	}
 

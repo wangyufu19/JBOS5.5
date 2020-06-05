@@ -1,7 +1,7 @@
 package com.jbos.app.sys.controller;
 
-import com.jbos.app.sys.pojo.Menu;
-import com.jbos.app.sys.service.MenuMgrService;
+import com.jbos.app.sys.pojo.Func;
+import com.jbos.app.sys.service.FuncMgrService;
 import com.jbos.common.data.UserObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,22 +18,22 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/menu")
-public class MenuMgrController extends BaseController{
+public class FuncMgrController extends BaseController{
     @Autowired
-    private MenuMgrService menuMgrService;
+    private FuncMgrService funcMgrService;
     /**
-     * 查询用户菜单权限列表
+     * 查询用户功能权限列表
      * @param username
      * @return
      */
     @ResponseBody
-    @RequestMapping(value = "/getUserMenuList", method = RequestMethod.GET)
-    public Return getUserMenuList(String username) {
-        List<Menu> menuList=null;
+    @RequestMapping(value = "/getUserFuncList", method = RequestMethod.GET)
+    public Return getUserFuncList(String username) {
+        List<Func> funcList=null;
         UserObject userObject=this.getUserObject();
         if(userObject!=null){
-            menuList=menuMgrService.getUserMenuList(userObject.getUid(),userObject.getUsername());
+            funcList=funcMgrService.getUserFuncList(userObject.getUid(),userObject.getUsername());
         }
-        return Return.ok().put("menuList",menuList);
+        return Return.ok().put("funcList",funcList);
     }
 }
